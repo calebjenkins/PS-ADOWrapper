@@ -15,9 +15,9 @@ function Get-AzDoVersion {
     param()
     
     try {
-        $version = az devops --version 2>&1
-        if ($LASTEXITCODE -eq 0) {
-            return $version
+        $version = az devops --version 2>&1 | Out-String
+        if ($LASTEXITCODE -eq 0 -and $version) {
+            return $version.Trim()
         }
         else {
             Write-Warning "Azure DevOps CLI is not installed or not in PATH"

@@ -39,7 +39,7 @@ switch ($Task) {
         }
         
         # Import Pester
-        Import-Module Pester -MinimumVersion 5.0.0
+        Import-Module Pester -MinimumVersion 5.0.0 -Force
         
         # Run tests
         $config = New-PesterConfiguration

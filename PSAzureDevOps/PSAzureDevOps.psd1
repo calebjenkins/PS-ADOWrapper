@@ -30,7 +30,7 @@ CompanyName = 'Unknown'
 Copyright = '(c) Caleb Jenkins. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'A set of PowerShell commands to wrap Azure ADO CLI easier to work with from the CLI'
+Description = 'A set of PowerShell commands to wrap Azure DevOps CLI, making it easier to work with from the command line'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '5.1'
