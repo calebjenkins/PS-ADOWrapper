@@ -23,15 +23,24 @@ function Get-ADOConfig {
     try {
         $config = Get-Content -Path $configPath -Raw | ConvertFrom-Json
         
-        # Convert PAT back to SecureString
+        # Convert PAT back to SecureString and set environment variable
         if ($config.PAT) {
-            $securePatString = $config.PAT | ConvertTo-SecureString
-            $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePatString)
-            $plainPat = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-            [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
-            
-            # Set environment variable for Azure DevOps CLI
-            $env:AZURE_DEVOPS_EXT_PAT = $plainPat
+            $BSTR = $null
+            try {
+                $securePatString = $config.PAT | ConvertTo-SecureString
+                $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($securePatString)
+                $plainPat = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+                
+                # Set environment variable for Azure DevOps CLI
+                # Note: This exposes the PAT to child processes during this session
+                $env:AZURE_DEVOPS_EXT_PAT = $plainPat
+            }
+            finally {
+                # Always clean up sensitive data from memory
+                if ($BSTR -ne $null) {
+                    [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
+                }
+            }
         }
         
         return $config

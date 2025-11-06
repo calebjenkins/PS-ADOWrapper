@@ -68,6 +68,7 @@ function SetUpADO {
     Write-Host ""
     
     # Configure Azure DevOps CLI defaults
+    $BSTR = $null
     try {
         # Convert SecureString back to plain text for az devops configure
         $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pat)
@@ -76,17 +77,20 @@ function SetUpADO {
         # Set defaults for az devops CLI
         az devops configure --defaults organization=$orgUrl project=$project --use-git-aliases true 2>&1 | Out-Null
         
-        # Login with PAT
+        # Login with PAT (environment variable is used by Azure DevOps CLI)
+        # Note: This exposes the PAT to child processes during this session
         $env:AZURE_DEVOPS_EXT_PAT = $plainPat
         Write-Host "Azure DevOps CLI configured with defaults." -ForegroundColor Green
-        
-        # Clean up
-        [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
-        
     }
     catch {
         Write-Warning "Failed to configure Azure DevOps CLI: $_"
         Write-Host "You may need to run 'az login' manually." -ForegroundColor Yellow
+    }
+    finally {
+        # Always clean up sensitive data from memory
+        if ($BSTR -ne $null) {
+            [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($BSTR)
+        }
     }
     
     Write-Host ""

@@ -118,9 +118,12 @@ Invoke-Pester -Path ./Tests/PSAzureDevOps.Tests.ps1
 
 ## Security Notes
 
-- PAT tokens are stored as encrypted secure strings
+- PAT tokens are stored as encrypted secure strings in the configuration file
+- The PAT is temporarily exposed as an environment variable (`AZURE_DEVOPS_EXT_PAT`) when using Azure DevOps CLI commands, which is required by the Azure CLI
+- Memory cleanup is properly handled using try-finally blocks to prevent sensitive data leaks
 - The configuration file should have restricted permissions
 - Never commit your PAT token to source control
+- Regularly rotate your PAT tokens according to your organization's security policy
 
 ## Contributing
 
