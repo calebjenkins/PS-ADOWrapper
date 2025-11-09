@@ -44,8 +44,12 @@ function New-InterruptionWorkItem {
         $config = Get-ADOConfig
         
         Write-Host "Creating interruption work item..." -ForegroundColor Cyan
+       # Write-Host "For organization: $($config.OrganizationUrl)" -ForegroundColor Yellow
+       # Write-Host "In project: $($config.Project)" -ForegroundColor Yellow
         
         # Build the az boards work-item create command
+        # $org = "https://dev.azure.com/"+$config.OrganizationUrl
+
         $args = @(
             "boards", "work-item", "create",
             "--title", $Title,
@@ -70,6 +74,7 @@ function New-InterruptionWorkItem {
         }
         
         # Execute the command
+        # Write-Host "Executing command: az $($args -join ' ')" -ForegroundColor DarkGray
         $result = & az @args 2>&1
         
         if ($LASTEXITCODE -eq 0) {
@@ -81,14 +86,16 @@ function New-InterruptionWorkItem {
             Write-Host "Type: $($workItem.fields.'System.WorkItemType')" -ForegroundColor White
             Write-Host "Tags: $($workItem.fields.'System.Tags')" -ForegroundColor White
             
-            if ($workItem.fields.'System.AssignedTo') {
-                Write-Host "Assigned To: $($workItem.fields.'System.AssignedTo'.displayName)" -ForegroundColor White
-            }
+            # if ($workItem.fields.'System.AssignedTo') {
+            #     Write-Host "Assigned To: $($workItem.fields.'System.AssignedTo'.displayName)" -ForegroundColor White
+            # }
             
-            Write-Host "URL: $($workItem._links.html.href)" -ForegroundColor Cyan
+            # Write-Host "URL: $($workItem._links.html.href)" -ForegroundColor Cyan
+            $link = $config.OrganizationUrl + "/" + $config.Project + "/_workitems/edit/" + $workItem.id
+            Write-Host "Link: $link" -ForegroundColor Cyan
             Write-Host ""
             
-            return $workItem
+            return;# $workItem
         }
         else {
             Write-Error "Failed to create work item: $result"
