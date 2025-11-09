@@ -5,7 +5,8 @@ A PowerShell module that simplifies working with Azure DevOps CLI by providing c
 ## Features
 
 - **SetUpADO**: One-time setup to store Azure DevOps credentials and configuration locally
-- **wi-i (New-InterruptionWorkItem)**: Quick command to create work items tagged as interruptions and auto-assigned to you
+- **wi (New-WorkItem)**: Create general work items with flexible options
+- **wi-i (New-WorkItemInterruption)**: Quick command to create work items tagged as interruptions and auto-assigned to you
 - **Cross-platform**: Works on Windows, Linux, and macOS
 - **Secure storage**: PAT tokens are stored as secure strings
 
@@ -58,23 +59,45 @@ This will prompt you for:
 
 Configuration is stored in `~/.psazuredevops/config.json` and credentials are encrypted.
 
-### Creating Interruption Work Items
+### Creating Work Items
 
-Use the `wi-i` command (alias for `New-InterruptionWorkItem`) to quickly create work items:
+The module provides two main functions for creating work items:
+
+#### General Work Items
+
+Use the `wi` command (alias for `New-WorkItem`) to create any type of work item:
 
 ```powershell
-# Quick syntax
+# Create a basic work item
+wi "Fix login bug"
+
+# Create with specific type and description
+New-WorkItem -Title "Update documentation" -Type "Task" -Description "Update API docs"
+
+# Create with custom tags
+New-WorkItem -Title "Review PR" -Tags "Review;High-Priority"
+```
+
+#### Interruption Work Items
+
+Use the `wi-i` command (alias for `New-WorkItemInterruption`) to quickly create work items tagged as interruptions:
+
+```powershell
+# Quick syntax for interruptions
 wi-i "Urgent customer call"
 
 # Full command with options
-New-InterruptionWorkItem -Title "Production bug fix" -Type "Bug" -Description "Critical issue in production"
+New-WorkItemInterruption -Title "Production bug fix" -Type "Bug" -Description "Critical issue in production"
 ```
 
-This automatically:
-- Creates a work item in your configured Azure DevOps project
-- Tags it with "Interruption"
-- Assigns it to you (if configured)
-- Returns the work item details including a URL
+Both functions automatically:
+- Create a work item in your configured Azure DevOps project
+- Assign it to you (if configured)
+- Return the work item details including a URL
+
+The interruption variant additionally:
+- Tags the work item with "Interruption"
+- Combines with any other tags you specify
 
 ### Examples
 
@@ -82,14 +105,20 @@ This automatically:
 # Set up Azure DevOps connection (first time only)
 SetUpADO
 
+# Create a general work item
+wi "Update user documentation"
+
+# Create a work item with specific type
+New-WorkItem -Title "Performance optimization" -Type "Task" -Description "Optimize database queries"
+
 # Create a simple interruption
 wi-i "Meeting with stakeholder"
 
-# Create an interruption with description
-New-InterruptionWorkItem -Title "Code review request" -Description "Review PR #123"
+# Create an interruption with description and custom tags
+New-WorkItemInterruption -Title "Code review request" -Description "Review PR #123" -Tags "Urgent"
 
 # Create a bug as an interruption
-New-InterruptionWorkItem -Title "Fix login issue" -Type "Bug"
+New-WorkItemInterruption -Title "Fix login issue" -Type "Bug"
 ```
 
 ## Available Commands
@@ -97,7 +126,8 @@ New-InterruptionWorkItem -Title "Fix login issue" -Type "Bug"
 | Command | Alias | Description |
 |---------|-------|-------------|
 | `SetUpADO` | - | Configure Azure DevOps connection and store credentials |
-| `New-InterruptionWorkItem` | `wi-i` | Create a work item tagged as interruption and assigned to you |
+| `New-WorkItem` | `wi` | Create a general work item with flexible options |
+| `New-WorkItemInterruption` | `wi-i` | Create a work item tagged as interruption and assigned to you |
 
 ## Testing
 
