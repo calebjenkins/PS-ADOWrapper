@@ -29,7 +29,7 @@ function New-InterruptionWorkItem {
     #>
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory = $true, Position = 0)]
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
         [string]$Title,
         
         [Parameter(Mandatory = $false)]
