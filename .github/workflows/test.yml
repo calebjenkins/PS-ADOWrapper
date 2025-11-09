@@ -1,0 +1,45 @@
+name: Test PSAzureDevOps Module
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup PowerShell
+      shell: pwsh
+      run: |
+        $PSVersionTable
+    
+    - name: Install Pester
+      shell: pwsh
+      run: |
+        if (-not (Get-Module -ListAvailable -Name Pester)) {
+          Install-Module -Name Pester -Force -SkipPublisherCheck -Scope CurrentUser
+        }
+    
+    - name: Run Pester Tests
+      shell: pwsh
+      run: |
+        cd PSAzureDevOps
+        Invoke-Pester -Path ./Tests/PSAzureDevOps.Tests.ps1 -Output Detailed -CI
+    
+    - name: Test Module Import
+      shell: pwsh
+      run: |
+        Import-Module ./PSAzureDevOps/PSAzureDevOps.psd1 -Force
+        Get-Command -Module PSAzureDevOps
