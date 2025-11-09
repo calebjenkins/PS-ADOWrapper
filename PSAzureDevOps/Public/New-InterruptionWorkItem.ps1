@@ -36,7 +36,11 @@ function New-InterruptionWorkItem {
         [string]$Type = "Task",
         
         [Parameter(Mandatory = $false)]
-        [string]$Description = ""
+        [string]$Description = "",
+
+        [Parameter(Mandatory = $false)]
+        [string]$Tags = ""
+
     )
     
     try {
@@ -61,8 +65,14 @@ function New-InterruptionWorkItem {
         }
         
         # Add tags
-        $args += "--fields"
-        $args += "System.Tags=Interruption"
+        if (-not [string]::IsNullOrWhiteSpace($Tags)) {
+            $args += "--fields"
+            $args += "System.Tags=$Tags;Interruption"
+        }
+        else {
+            $args += "--fields"
+            $args += "System.Tags=Interruption"
+        }
         
         # Add assignment if user name is configured
         if (-not [string]::IsNullOrWhiteSpace($config.UserName)) {
@@ -85,10 +95,16 @@ function New-InterruptionWorkItem {
                 Write-Host "Assigned To: $($workItem.fields.'System.AssignedTo'.displayName)" -ForegroundColor White
             }
             
-            Write-Host "URL: $($workItem._links.html.href)" -ForegroundColor Cyan
+            $url = $config.OrganizationUrl.TrimEnd('/') + "/" + $config.Project + "/_workitems/edit/" + $workItem.id
+            Write-Host "URL: $url" -ForegroundColor Cyan
             Write-Host ""
             
-            return $workItem
+            if($Verbose) {
+                return $workItem
+            } else {
+                return;
+            }
+            
         }
         else {
             Write-Error "Failed to create work item: $result"
