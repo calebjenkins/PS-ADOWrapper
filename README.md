@@ -101,15 +101,79 @@ New-InterruptionWorkItem -Title "Fix login issue" -Type "Bug"
 
 ## Testing
 
-The module includes comprehensive Pester tests. To run the tests:
+The module includes comprehensive Pester tests to ensure functionality and reliability. 
+
+### Prerequisites for Testing
+
+1. **Install Pester** (if not already installed):
+   ```powershell
+   Install-Module -Name Pester -Scope CurrentUser -Force
+   ```
+
+2. **Verify Pester Installation**:
+   ```powershell
+   Get-Module -Name Pester -ListAvailable
+   ```
+
+### Running Tests Locally
+
+#### Basic Test Execution
 
 ```powershell
-# Navigate to the module directory
-cd PSAzureDevOps
+# Navigate to the project root directory
+cd c:\path\to\PSAzureDevOps
 
-# Run tests
-Invoke-Pester -Path ./Tests/PSAzureDevOps.Tests.ps1
+# Run all tests with default output
+Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1
 ```
+
+#### Advanced Test Options
+
+```powershell
+# Run tests with detailed output
+Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1 -Output Detailed
+
+# Run tests and generate a test report
+Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1 -OutputFormat NUnitXml -OutputFile "TestResults.xml"
+
+# Run specific test contexts (examples)
+Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1 -Tag "ModuleLoading"
+```
+
+#### Test Coverage and Validation
+
+The test suite covers:
+- **Module Loading**: Verifies the module imports correctly and exports expected functions
+- **Function Availability**: Ensures all public functions and aliases are properly defined
+- **Help Documentation**: Validates that functions have proper help documentation
+- **Parameter Validation**: Checks function parameters and their attributes
+- **Configuration Management**: Tests configuration file handling and error scenarios
+
+#### Troubleshooting Tests
+
+If tests fail, try these steps:
+
+1. **Clean Module Import**:
+   ```powershell
+   Remove-Module PSAzureDevOps -ErrorAction SilentlyContinue
+   Import-Module .\PSAzureDevOps\PSAzureDevOps.psm1 -Force
+   ```
+
+2. **Check PowerShell Execution Policy**:
+   ```powershell
+   Get-ExecutionPolicy
+   # If restricted, set to allow script execution:
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+3. **Verify Module Path**:
+   ```powershell
+   Test-Path .\PSAzureDevOps\PSAzureDevOps.psm1
+   ```
+
+### Continuous Integration
+
+These tests are designed to run in CI/CD pipelines and will automatically validate the module's functionality across different environments.
 
 ## Configuration File Location
 
