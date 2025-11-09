@@ -8,7 +8,10 @@ function New-WorkItemInterruption {
         [string]$Type = "Task",
 
         [Parameter(Mandatory = $false)]
-        [string]$Description = ""
+        [string]$Description = "",
+
+        [Parameter(Mandatory = $false)]
+        [string]$Tags = ""
     )
 
     # Add the "Interruption" tag to the existing tags
