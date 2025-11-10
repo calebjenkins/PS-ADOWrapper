@@ -1,5 +1,5 @@
 # ADOWrapper
-[![Test ADOWrapper Module](https://github.com/calebjenkins/ADOWrapper/actions/workflows/test.yml/badge.svg)](https://github.com/calebjenkins/ADOWrapper/actions/workflows/test.yml)
+[![Test ADOWrapper Module](https://github.com/calebjenkins/PS-ADOWrapper/actions/workflows/test.yml/badge.svg)](https://github.com/calebjenkins/PS-ADOWrapper/actions/workflows/test.yml)
 
 A PowerShell module that Wraps ADO Workitems and simplifies working with Azure DevOps CLI by providing convenient wrapper functions and pre-set scenarios for common tasks.
 
