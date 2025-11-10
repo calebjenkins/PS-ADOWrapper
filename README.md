@@ -257,4 +257,4 @@ See the [LICENSE](LICENSE) file for details.
 
 ## Author
 
-Caleb Jenkins
+[Caleb Jenkins](https://github.com/calebjenkins/)

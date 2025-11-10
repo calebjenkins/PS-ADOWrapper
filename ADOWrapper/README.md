@@ -2,19 +2,20 @@
 
 This directory contains the ADOWrapper PowerShell module files.
 
-## Structure
+## Project Structure
 
 ```
 ADOWrapper/
-├── ADOWrapper.psd1          # Module manifest
-├── ADOWrapper.psm1          # Main module file
-├── Public/                  # Exported functions
-│   ├── SetUpADO.ps1        # Setup Azure DevOps configuration
-│   └── New-InterruptionWorkItem.ps1  # Create interruption work items (wi-i)
-├── Private/                 # Internal helper functions
-│   └── Get-ADOConfig.ps1   # Load configuration
-└── Tests/                   # Pester tests
-    └── ADOWrapper.Tests.ps1
+├── ADOWrapper/           # Module directory
+│   ├── ADOWrapper.psd1   # Module manifest
+│   ├── ADOWrapper.psm1   # Main module file
+│   ├── Public/              # Exported functions
+│   ├── Private/             # Internal helper functions
+│   └── Tests/               # Pester tests
+├── Install-Module.ps1       # Installation script
+├── Install-Prereqs.ps1      # Checks for and installs prereqs - Azure CLI and ADO extension
+├── Demo.ps1                 # Demo script
+└── README.md                # Main documentation
 ```
 
 ## Installation

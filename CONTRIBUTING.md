@@ -41,6 +41,7 @@ ADOWrapper/
 │   ├── Private/             # Internal helper functions
 │   └── Tests/               # Pester tests
 ├── Install-Module.ps1       # Installation script
+├── Install-Prereqs.ps1      # Checks for and installs prereqs - Azure CLI and ADO extension
 ├── Demo.ps1                 # Demo script
 └── README.md                # Main documentation
 ```
