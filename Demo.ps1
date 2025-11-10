@@ -31,8 +31,8 @@ Get-Help SetUpADO -Detailed | Select-Object -First 20
 Write-Host ""
 
 # Show help for wi-i
-Write-Host "4. Help for New-InterruptionWorkItem (wi-i) command:" -ForegroundColor Yellow
-Get-Help New-InterruptionWorkItem -Examples
+Write-Host "4. Help for New-WorkItem (wi-i) command:" -ForegroundColor Yellow
+Get-Help New-WorkItem -Examples
 Write-Host ""
 
 # Show module details
