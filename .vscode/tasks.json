@@ -7,7 +7,7 @@
             "command": "pwsh",
             "args": [
                 "-Command",
-                "Invoke-Pester -Path './PSAzureDevOps/Tests/' -Output Detailed"
+                "Invoke-Pester -Path './ADOWrapper/Tests/' -Output Detailed"
             ],
             "group": {
                 "kind": "test",
@@ -32,7 +32,7 @@
             "command": "pwsh",
             "args": [
                 "-Command",
-                "Invoke-Pester -Path './PSAzureDevOps/Tests/' -CodeCoverage './PSAzureDevOps/Public/*.ps1' -OutputFormat NUnitXml -OutputFile 'TestResults.xml'"
+                "Invoke-Pester -Path './ADOWrapper/Tests/' -CodeCoverage './ADOWrapper/Public/*.ps1' -OutputFormat NUnitXml -OutputFile 'TestResults.xml'"
             ],
             "group": "test",
             "presentation": {
@@ -49,7 +49,7 @@
             "command": "pwsh",
             "args": [
                 "-Command",
-                "Invoke-ScriptAnalyzer -Path './PSAzureDevOps/' -Recurse -Severity Warning,Error"
+                "Invoke-ScriptAnalyzer -Path './ADOWrapper/' -Recurse -Severity Warning,Error"
             ],
             "group": "build",
             "presentation": {
@@ -78,12 +78,12 @@
             "problemMatcher": []
         },
         {
-            "label": "Import PSAzureDevOps Module",
+            "label": "Import ADOWrapper Module",
             "type": "shell",
             "command": "pwsh",
             "args": [
                 "-Command",
-                "Import-Module './PSAzureDevOps/PSAzureDevOps.psm1' -Force; Get-Module PSAzureDevOps | Format-List"
+                "Import-Module './ADOWrapper/ADOWrapper.psm1' -Force; Get-Module ADOWrapper | Format-List"
             ],
             "group": "build",
             "presentation": {
@@ -100,7 +100,7 @@
             "command": "pwsh",
             "args": [
                 "-Command",
-                "Import-Module platyPS -Force; Import-Module './PSAzureDevOps/PSAzureDevOps.psm1' -Force; New-MarkdownHelp -Module PSAzureDevOps -OutputFolder './docs' -Force"
+                "Import-Module platyPS -Force; Import-Module './ADOWrapper/ADOWrapper.psm1' -Force; New-MarkdownHelp -Module ADOWrapper -OutputFolder './docs' -Force"
             ],
             "group": "build",
             "presentation": {

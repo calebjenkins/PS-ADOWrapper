@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# PSAzureDevOps Development Container Setup Script
-echo "🚀 Setting up PSAzureDevOps development environment..."
+# ADOWrapper Development Container Setup Script
+echo "🚀 Setting up ADOWrapper development environment..."
 
 # Update package lists
 sudo apt-get update
@@ -69,8 +69,8 @@ pwsh -c "
     
     # Create a basic profile with useful aliases and functions
     @'
-# PSAzureDevOps Development Profile
-Write-Host \"PSAzureDevOps Development Environment Loaded\" -ForegroundColor Green
+# ADOWrapper Development Profile
+Write-Host \"ADOWrapper Development Environment Loaded\" -ForegroundColor Green
 
 # Import Pester module
 Import-Module Pester -Force
@@ -81,26 +81,26 @@ Set-Alias -Name analyze -Value Invoke-ScriptAnalyzer
 
 # Function to run tests with coverage
 function Test-Module {
-    param([string]\$Path = './PSAzureDevOps/Tests/')
-    Invoke-Pester -Path \$Path -CodeCoverage './PSAzureDevOps/Public/*.ps1' -OutputFormat NUnitXml -OutputFile 'TestResults.xml'
+    param([string]\$Path = './ADOWrapper/Tests/')
+    Invoke-Pester -Path \$Path -CodeCoverage './ADOWrapper/Public/*.ps1' -OutputFormat NUnitXml -OutputFile 'TestResults.xml'
 }
 
 # Function to analyze code quality
 function Test-CodeQuality {
-    param([string]\$Path = './PSAzureDevOps/')
+    param([string]\$Path = './ADOWrapper/')
     Invoke-ScriptAnalyzer -Path \$Path -Recurse -Severity Warning,Error
 }
 
 # Function to show module information
 function Show-ModuleInfo {
-    Get-Module PSAzureDevOps -ListAvailable | Format-List
+    Get-Module ADOWrapper -ListAvailable | Format-List
 }
 
 Write-Host \"Available commands: Test-Module, Test-CodeQuality, Show-ModuleInfo\" -ForegroundColor Cyan
 '@ | Out-File -FilePath \$PROFILE -Encoding UTF8
 "
 
-echo "✅ PSAzureDevOps development environment setup complete!"
+echo "✅ ADOWrapper development environment setup complete!"
 echo ""
 echo "🎯 Next steps:"
 echo "   1. Open the workspace in VS Code"
@@ -109,6 +109,6 @@ echo "   3. Run 'Test-CodeQuality' to analyze code"
 echo "   4. Configure Azure CLI: az login"
 echo ""
 echo "📚 Useful commands:"
-echo "   - test ./PSAzureDevOps/Tests/  # Run Pester tests"
-echo "   - analyze ./PSAzureDevOps/    # Analyze code quality"
+echo "   - test ./ADOWrapper/Tests/  # Run Pester tests"
+echo "   - analyze ./ADOWrapper/    # Analyze code quality"
 echo "   - az devops configure --list  # Check Azure DevOps config"

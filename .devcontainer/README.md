@@ -1,6 +1,6 @@
-# PSAzureDevOps Development Container
+# ADOWrapper Development Container
 
-This directory contains the development container configuration for the PSAzureDevOps project. The devcontainer ensures a consistent development environment with the correct versions of PowerShell, Pester, and other required tools.
+This directory contains the development container configuration for the ADOWrapper project. The devcontainer ensures a consistent development environment with the correct versions of PowerShell, Pester, and other required tools.
 
 ## What's Included
 
@@ -51,13 +51,13 @@ This directory contains the development container configuration for the PSAzureD
 ### Running Tests
 ```powershell
 # Run all tests
-Invoke-Pester -Path ./PSAzureDevOps/Tests/
+Invoke-Pester -Path ./ADOWrapper/Tests/
 
 # Run tests with coverage
 Test-Module
 
 # Run specific test
-Invoke-Pester -Path ./PSAzureDevOps/Tests/PSAzureDevOps.Tests.ps1 -Output Detailed
+Invoke-Pester -Path ./ADOWrapper/Tests/ADOWrapper.Tests.ps1 -Output Detailed
 ```
 
 ### Code Quality
@@ -66,7 +66,7 @@ Invoke-Pester -Path ./PSAzureDevOps/Tests/PSAzureDevOps.Tests.ps1 -Output Detail
 Test-CodeQuality
 
 # Or manually
-Invoke-ScriptAnalyzer -Path ./PSAzureDevOps/ -Recurse
+Invoke-ScriptAnalyzer -Path ./ADOWrapper/ -Recurse
 ```
 
 ### Azure DevOps Setup

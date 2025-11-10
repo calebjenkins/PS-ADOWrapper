@@ -1,5 +1,5 @@
 {
-  "name": "PSAzureDevOps Development",
+  "name": "ADOWrapper Development",
   "image": "mcr.microsoft.com/devcontainers/powershell:latest",
   
   // Features to add to the dev container
@@ -43,7 +43,7 @@
   "forwardPorts": [],
 
   // Use 'postStartCommand' to run commands after the container has started
-  "postStartCommand": "pwsh -c 'Write-Host \"PSAzureDevOps Development Container Ready!\" -ForegroundColor Green'",
+  "postStartCommand": "pwsh -c 'Write-Host \"ADOWrapper Development Container Ready!\" -ForegroundColor Green'",
 
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root
   "remoteUser": "vscode",

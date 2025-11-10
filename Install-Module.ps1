@@ -1,10 +1,10 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Installs the PSAzureDevOps module to your PowerShell modules directory.
+    Installs the ADOWrapper module to your PowerShell modules directory.
 
 .DESCRIPTION
-    This script copies the PSAzureDevOps module to your user PowerShell modules directory,
+    This script copies the ADOWrapper module to your user PowerShell modules directory,
     making it available for automatic loading in any PowerShell session.
 
 .PARAMETER Scope
@@ -28,12 +28,12 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-Write-Host "PSAzureDevOps Module Installer" -ForegroundColor Cyan
+Write-Host "ADOWrapper Module Installer" -ForegroundColor Cyan
 Write-Host "===============================" -ForegroundColor Cyan
 Write-Host ""
 
 # Determine source and destination paths
-$sourcePath = Join-Path $PSScriptRoot "PSAzureDevOps"
+$sourcePath = Join-Path $PSScriptRoot "ADOWrapper"
 
 if ($Scope -eq 'User') {
     if ($IsWindows -or $PSVersionTable.PSVersion.Major -lt 6) {
@@ -49,7 +49,7 @@ if ($Scope -eq 'User') {
     }
 }
 
-$destPath = Join-Path $destBasePath "PSAzureDevOps"
+$destPath = Join-Path $destBasePath "ADOWrapper"
 
 # Check if source exists
 if (-not (Test-Path $sourcePath)) {
@@ -70,14 +70,14 @@ if (Test-Path $destPath) {
 }
 
 # Copy module files
-Write-Host "Installing PSAzureDevOps module to: $destPath" -ForegroundColor Green
+Write-Host "Installing ADOWrapper module to: $destPath" -ForegroundColor Green
 Copy-Item -Path $sourcePath -Destination $destBasePath -Recurse -Force
 
 Write-Host ""
 Write-Host "Installation complete!" -ForegroundColor Green
 Write-Host ""
 Write-Host "To start using the module, run:" -ForegroundColor Cyan
-Write-Host "  Import-Module PSAzureDevOps" -ForegroundColor White
+Write-Host "  Import-Module ADOWrapper" -ForegroundColor White
 Write-Host ""
 Write-Host "Then set up your Azure DevOps connection:" -ForegroundColor Cyan
 Write-Host "  SetUpADO" -ForegroundColor White
@@ -89,7 +89,7 @@ try {
     Write-Host "Module imported successfully!" -ForegroundColor Green
     Write-Host ""
     Write-Host "Available commands:" -ForegroundColor Cyan
-    Get-Command -Module PSAzureDevOps | Format-Table -AutoSize
+    Get-Command -Module ADOWrapper | Format-Table -AutoSize
 } catch {
     Write-Warning "Module installed but import failed: $_"
 }

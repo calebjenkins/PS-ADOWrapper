@@ -1,7 +1,7 @@
 # Verify-DevContainer.ps1
 # Script to verify the development container setup
 
-Write-Host "🔍 PSAzureDevOps Development Container Verification" -ForegroundColor Cyan
+Write-Host "🔍 ADOWrapper Development Container Verification" -ForegroundColor Cyan
 Write-Host "=" * 50
 
 # Check PowerShell Version
@@ -63,31 +63,31 @@ try {
 }
 
 # Test module import
-Write-Host "`n📦 PSAzureDevOps Module Test:" -ForegroundColor Yellow
-$modulePath = "./PSAzureDevOps/PSAzureDevOps.psm1"
+Write-Host "`n📦 ADOWrapper Module Test:" -ForegroundColor Yellow
+$modulePath = "./ADOWrapper/ADOWrapper.psm1"
 if (Test-Path $modulePath) {
     try {
         Import-Module $modulePath -Force
-        $module = Get-Module PSAzureDevOps
+        $module = Get-Module ADOWrapper
         if ($module) {
-            Write-Host "✅ PSAzureDevOps module imported successfully" -ForegroundColor Green
+            Write-Host "✅ ADOWrapper module imported successfully" -ForegroundColor Green
             Write-Host "   Exported Functions: $($module.ExportedFunctions.Keys -join ', ')" -ForegroundColor White
             Write-Host "   Exported Aliases: $($module.ExportedAliases.Keys -join ', ')" -ForegroundColor White
         } else {
             Write-Host "❌ Module import failed - no module object returned" -ForegroundColor Red
         }
     } catch {
-        Write-Host "❌ Failed to import PSAzureDevOps module: $_" -ForegroundColor Red
+        Write-Host "❌ Failed to import ADOWrapper module: $_" -ForegroundColor Red
     }
 } else {
-    Write-Host "❌ PSAzureDevOps.psm1 not found at $modulePath" -ForegroundColor Red
+    Write-Host "❌ ADOWrapper.psm1 not found at $modulePath" -ForegroundColor Red
 }
 
 # Test basic functionality
 Write-Host "`n🧪 Basic Functionality Test:" -ForegroundColor Yellow
-if (Test-Path "./PSAzureDevOps/Tests/PSAzureDevOps.Tests.ps1") {
+if (Test-Path "./ADOWrapper/Tests/ADOWrapper.Tests.ps1") {
     try {
-        $testResult = Invoke-Pester -Path "./PSAzureDevOps/Tests/PSAzureDevOps.Tests.ps1" -PassThru -Show None
+        $testResult = Invoke-Pester -Path "./ADOWrapper/Tests/ADOWrapper.Tests.ps1" -PassThru -Show None
         if ($testResult.FailedCount -eq 0) {
             Write-Host "✅ All tests passed ($($testResult.PassedCount) passed)" -ForegroundColor Green
         } else {
@@ -101,7 +101,7 @@ if (Test-Path "./PSAzureDevOps/Tests/PSAzureDevOps.Tests.ps1") {
 }
 
 Write-Host "`n🎯 Development Environment Status:" -ForegroundColor Cyan
-Write-Host "   Ready for PSAzureDevOps development!" -ForegroundColor Green
+Write-Host "   Ready for ADOWrapper development!" -ForegroundColor Green
 Write-Host "`n💡 Quick Commands:" -ForegroundColor Cyan
 Write-Host "   Test-Module          # Run all tests with coverage" -ForegroundColor White
 Write-Host "   Test-CodeQuality     # Analyze code quality" -ForegroundColor White

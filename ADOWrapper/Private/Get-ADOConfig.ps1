@@ -13,7 +13,7 @@ function Get-ADOConfig {
     param()
     
     $userProfile = if ($env:USERPROFILE) { $env:USERPROFILE } else { $env:HOME }
-    $configDir = Join-Path $userProfile ".psazuredevops"
+    $configDir = Join-Path $userProfile ".adowrapper"
     $configPath = Join-Path $configDir "config.json"
     
     if (-not (Test-Path $configPath)) {

@@ -1,14 +1,14 @@
-# PSAzureDevOps - Usage Examples
+# ADOWrapper - Usage Examples
 
-This document provides practical examples of using the PSAzureDevOps module.
+This document provides practical examples of using the ADOWrapper module.
 
 ## Installation
 
 ### Quick Install
 ```powershell
 # Clone the repository
-git clone https://github.com/calebjenkins/PSAzureDevOps.git
-cd PSAzureDevOps
+git clone https://github.com/calebjenkins/ADOWrapper.git
+cd ADOWrapper
 
 # Run the installer
 ./Install-Module.ps1
@@ -17,7 +17,7 @@ cd PSAzureDevOps
 ### Manual Installation
 ```powershell
 # Import the module directly
-Import-Module ./PSAzureDevOps/PSAzureDevOps.psd1
+Import-Module ./ADOWrapper/ADOWrapper.psd1
 ```
 
 ## First-Time Setup
@@ -39,7 +39,7 @@ Enter your Personal Access Token (PAT): ********
 Enter your name/email for work item assignment (optional): john.doe@contoso.com
 
 Configuration saved successfully!
-Config location: /home/user/.psazuredevops/config.json
+Config location: /home/user/.adowrapper/config.json
 
 Azure DevOps CLI configured with defaults.
 
@@ -136,29 +136,29 @@ Get-Help SetUpADO -Full
 Get-Help New-InterruptionWorkItem -Examples
 
 # List all available commands
-Get-Command -Module PSAzureDevOps
+Get-Command -Module ADOWrapper
 ```
 
 ### Module Information
 ```powershell
 # Get module details
-Get-Module PSAzureDevOps | Format-List
+Get-Module ADOWrapper | Format-List
 
 # Test if module is loaded
-Get-Module -Name PSAzureDevOps
+Get-Module -Name ADOWrapper
 ```
 
 ## Configuration Management
 
 ### View Current Configuration
-Configuration is stored in: `~/.psazuredevops/config.json`
+Configuration is stored in: `~/.adowrapper/config.json`
 
 ```powershell
 # On Linux/macOS
-cat ~/.psazuredevops/config.json
+cat ~/.adowrapper/config.json
 
 # On Windows
-Get-Content $env:USERPROFILE\.psazuredevops\config.json
+Get-Content $env:USERPROFILE\.adowrapper\config.json
 ```
 
 ### Reconfigure
@@ -178,7 +178,7 @@ This will overwrite your previous configuration.
 $env:PSModulePath -split [IO.Path]::PathSeparator
 
 # Import module explicitly
-Import-Module /path/to/PSAzureDevOps/PSAzureDevOps.psd1
+Import-Module /path/to/ADOWrapper/ADOWrapper.psd1
 ```
 
 ### Configuration Not Found
@@ -202,7 +202,7 @@ az extension add --name azure-devops
 ### Using in Scripts
 ```powershell
 # script.ps1
-Import-Module PSAzureDevOps
+Import-Module ADOWrapper
 
 # Create multiple work items
 $items = @(
@@ -222,7 +222,7 @@ foreach ($item in $items) {
 # Azure Pipeline example
 steps:
 - pwsh: |
-    Import-Module PSAzureDevOps
+    Import-Module ADOWrapper
     wi-i "Pipeline failed: $($env:BUILD_BUILDNUMBER)"
   displayName: 'Create interruption work item'
   condition: failed()
@@ -238,6 +238,6 @@ steps:
 
 ## More Information
 
-- [GitHub Repository](https://github.com/calebjenkins/PSAzureDevOps)
+- [GitHub Repository](https://github.com/calebjenkins/ADOWrapper)
 - [Azure DevOps CLI Documentation](https://docs.microsoft.com/en-us/cli/azure/service-page/azure%20devops)
 - [PowerShell Gallery](https://www.powershellgallery.com/) (coming soon)

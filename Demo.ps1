@@ -1,28 +1,28 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Demo script showing PSAzureDevOps module usage.
+    Demo script showing ADOWrapper module usage.
 
 .DESCRIPTION
-    This script demonstrates the main features of the PSAzureDevOps module.
+    This script demonstrates the main features of the ADOWrapper module.
     Note: This is a demo script and won't actually connect to Azure DevOps
     without valid credentials.
 #>
 
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "PSAzureDevOps Module Demo" -ForegroundColor Cyan
+Write-Host "ADOWrapper Module Demo" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Import the module
-Write-Host "1. Importing PSAzureDevOps module..." -ForegroundColor Yellow
-Import-Module ./PSAzureDevOps/PSAzureDevOps.psd1 -Force
+Write-Host "1. Importing ADOWrapper module..." -ForegroundColor Yellow
+Import-Module ./ADOWrapper/ADOWrapper.psd1 -Force
 Write-Host "   ✓ Module imported successfully" -ForegroundColor Green
 Write-Host ""
 
 # Show available commands
 Write-Host "2. Available commands:" -ForegroundColor Yellow
-Get-Command -Module PSAzureDevOps | Format-Table -AutoSize
+Get-Command -Module ADOWrapper | Format-Table -AutoSize
 Write-Host ""
 
 # Show help for SetUpADO
@@ -37,7 +37,7 @@ Write-Host ""
 
 # Show module details
 Write-Host "5. Module information:" -ForegroundColor Yellow
-Get-Module PSAzureDevOps | Format-List Name, Version, Description, Author, ModuleType, ExportedFunctions, ExportedAliases
+Get-Module ADOWrapper | Format-List Name, Version, Description, Author, ModuleType, ExportedFunctions, ExportedAliases
 Write-Host ""
 
 Write-Host "========================================" -ForegroundColor Cyan

@@ -1,17 +1,25 @@
 # Changelog
 
-All notable changes to the PSAzureDevOps module will be documented in this file.
+All notable changes to the ADOWrapper module will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- Renamed project from PSAzureDevOps to ADOWrapper
+- Updated configuration directory from `~/.psazuredevops/` to `~/.adowrapper/`
+- Updated all documentation, code references, and repository URLs
+- Updated GitHub repository name to ADOWrapper
+
 ## [1.0.0] - 2025-11-06
 
 ### Added
-- Initial release of PSAzureDevOps module
+- Initial release of ADOWrapper module
 - `SetUpADO` function to configure Azure DevOps connection and store credentials locally
 - `New-InterruptionWorkItem` function (alias `wi-i`) to create work items tagged as interruptions
-- Secure credential storage in `~/.psazuredevops/config.json`
+- Secure credential storage in `~/.adowrapper/config.json`
 - Cross-platform support (Windows, Linux, macOS)
 - Comprehensive Pester tests (11 tests covering all functionality)
 - Full documentation with examples and help text
@@ -29,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Documentation
 - Comprehensive README with usage examples
 - Comment-based help for all public functions
-- Module README in the PSAzureDevOps directory
+- Module README in the ADOWrapper directory
 - CONTRIBUTING guide for developers
 - Demo script with usage examples
 

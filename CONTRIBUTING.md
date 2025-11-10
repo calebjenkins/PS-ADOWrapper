@@ -1,6 +1,6 @@
-# Contributing to PSAzureDevOps
+# Contributing to ADOWrapper
 
-Thank you for your interest in contributing to PSAzureDevOps! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to ADOWrapper! This document provides guidelines and information for contributors.
 
 ## Getting Started
 
@@ -33,10 +33,10 @@ az extension add --name azure-devops
 ## Project Structure
 
 ```
-PSAzureDevOps/
-├── PSAzureDevOps/           # Module directory
-│   ├── PSAzureDevOps.psd1   # Module manifest
-│   ├── PSAzureDevOps.psm1   # Main module file
+ADOWrapper/
+├── ADOWrapper/           # Module directory
+│   ├── ADOWrapper.psd1   # Module manifest
+│   ├── ADOWrapper.psm1   # Main module file
 │   ├── Public/              # Exported functions
 │   ├── Private/             # Internal helper functions
 │   └── Tests/               # Pester tests
@@ -88,13 +88,13 @@ function Verb-Noun {
 ### Running Tests
 ```powershell
 # Run all tests
-Invoke-Pester -Path ./PSAzureDevOps/Tests/
+Invoke-Pester -Path ./ADOWrapper/Tests/
 
 # Run specific test file
-Invoke-Pester -Path ./PSAzureDevOps/Tests/PSAzureDevOps.Tests.ps1
+Invoke-Pester -Path ./ADOWrapper/Tests/ADOWrapper.Tests.ps1
 
 # Run with detailed output
-Invoke-Pester -Path ./PSAzureDevOps/Tests/ -Output Detailed
+Invoke-Pester -Path ./ADOWrapper/Tests/ -Output Detailed
 ```
 
 ### Writing Tests

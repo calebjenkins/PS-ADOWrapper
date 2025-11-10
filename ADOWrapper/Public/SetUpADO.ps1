@@ -44,7 +44,7 @@ function SetUpADO {
     
     # Create configuration directory if it doesn't exist (cross-platform)
     $userProfile = if ($env:USERPROFILE) { $env:USERPROFILE } else { $env:HOME }
-    $configDir = Join-Path $userProfile ".psazuredevops"
+    $configDir = Join-Path $userProfile ".adowrapper"
     if (-not (Test-Path $configDir)) {
         New-Item -ItemType Directory -Path $configDir -Force | Out-Null
     }

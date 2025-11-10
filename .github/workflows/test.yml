@@ -1,4 +1,4 @@
-name: Test PSAzureDevOps Module
+name: Test ADOWrapper Module
 
 on:
   push:
@@ -36,11 +36,11 @@ jobs:
     - name: Run Pester Tests
       shell: pwsh
       run: |
-        cd PSAzureDevOps
-        Invoke-Pester -Path ./Tests/PSAzureDevOps.Tests.ps1 -Output Detailed -CI
+        cd ADOWrapper
+        Invoke-Pester -Path ./Tests/ADOWrapper.Tests.ps1 -Output Detailed -CI
     
     - name: Test Module Import
       shell: pwsh
       run: |
-        Import-Module ./PSAzureDevOps/PSAzureDevOps.psd1 -Force
-        Get-Command -Module PSAzureDevOps
+        Import-Module ./ADOWrapper/ADOWrapper.psd1 -Force
+        Get-Command -Module ADOWrapper

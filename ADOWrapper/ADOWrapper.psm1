@@ -1,4 +1,4 @@
-# PSAzureDevOps Module
+# ADOWrapper Module
 # A PowerShell module to simplify working with Azure DevOps CLI
 
 # Get public and private function definition files

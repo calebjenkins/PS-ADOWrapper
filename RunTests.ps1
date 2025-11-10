@@ -1,10 +1,10 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Runs all Pester tests for the PSAzureDevOps module.
+    Runs all Pester tests for the ADOWrapper module.
 
 .DESCRIPTION
-    This script runs all Pester tests for the PSAzureDevOps module with comprehensive
+    This script runs all Pester tests for the ADOWrapper module with comprehensive
     output formatting, error handling, and optional code coverage analysis.
 
 .PARAMETER CodeCoverage
@@ -39,7 +39,7 @@
     Runs tests with detailed output showing individual test results.
 
 .NOTES
-    Author: PSAzureDevOps Team
+    Author: ADOWrapper Team
     Requires: Pester 5.0+
 #>
 
@@ -67,11 +67,11 @@ $ErrorActionPreference = 'Stop'
 
 # Script variables
 $ProjectRoot = $PSScriptRoot
-$ModulePath = Join-Path $ProjectRoot "PSAzureDevOps"
+$ModulePath = Join-Path $ProjectRoot "ADOWrapper"
 $TestPath = Join-Path $ModulePath "Tests"
 $PublicPath = Join-Path $ModulePath "Public"
 
-Write-Host "🧪 PSAzureDevOps Test Runner" -ForegroundColor Cyan
+Write-Host "🧪 ADOWrapper Test Runner" -ForegroundColor Cyan
 Write-Host "=" * 50
 Write-Host "Project Root: $ProjectRoot" -ForegroundColor Gray
 Write-Host "Test Path: $TestPath" -ForegroundColor Gray
@@ -102,7 +102,7 @@ try {
 }
 
 # Check if module can be imported
-$moduleFile = Join-Path $ModulePath "PSAzureDevOps.psm1"
+$moduleFile = Join-Path $ModulePath "ADOWrapper.psm1"
 if (-not (Test-Path $moduleFile)) {
     Write-Error "❌ Module file not found: $moduleFile"
     exit 1
@@ -158,7 +158,7 @@ $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
 
 try {
     # Clean up any existing module imports to ensure fresh test run
-    Remove-Module PSAzureDevOps -ErrorAction SilentlyContinue
+    Remove-Module ADOWrapper -ErrorAction SilentlyContinue
     
     # Run Pester tests
     $testResults = Invoke-Pester -Configuration $pesterConfig
@@ -316,5 +316,5 @@ try {
     exit 1
 } finally {
     # Clean up
-    Remove-Module PSAzureDevOps -ErrorAction SilentlyContinue
+    Remove-Module ADOWrapper -ErrorAction SilentlyContinue
 }

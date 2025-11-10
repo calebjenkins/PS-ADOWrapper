@@ -1,25 +1,25 @@
 BeforeAll {
     # Import the module
-    $modulePath = Join-Path $PSScriptRoot ".." "PSAzureDevOps.psm1"
+    $modulePath = Join-Path $PSScriptRoot ".." "ADOWrapper.psm1"
     Import-Module $modulePath -Force
 }
 
-Describe "PSAzureDevOps Module" {
+Describe "ADOWrapper Module" {
     Context "Module Loading" {
         It "Should import the module successfully" {
-            $module = Get-Module -Name PSAzureDevOps
+            $module = Get-Module -Name ADOWrapper
             $module | Should -Not -BeNullOrEmpty
         }
         
         It "Should have correct module version" {
-            $module = Get-Module -Name PSAzureDevOps
+            $module = Get-Module -Name ADOWrapper
             $module.Version | Should -Not -BeNullOrEmpty
             # Module version should be a valid version number (allows 0.0 for dev versions)
             $module.Version.ToString() | Should -Match "^\d+\.\d+(\.\d+)?(\.\d+)?$"
         }
         
         It "Should export expected number of functions" {
-            $module = Get-Module -Name PSAzureDevOps
+            $module = Get-Module -Name ADOWrapper
             $exportedFunctions = $module.ExportedFunctions.Keys
             $exportedFunctions.Count | Should -BeGreaterOrEqual 3
             $exportedFunctions | Should -Contain "SetUpADO"
@@ -130,9 +130,9 @@ Describe "PSAzureDevOps Module" {
 
 Describe "Configuration Management" {
     Context "Configuration File" {
-        It "Should create .psazuredevops directory in user profile" {
+        It "Should create .adowrapper directory in user profile" {
             $userProfile = if ($env:USERPROFILE) { $env:USERPROFILE } else { $env:HOME }
-            $expectedPath = Join-Path $userProfile ".psazuredevops"
+            $expectedPath = Join-Path $userProfile ".adowrapper"
             # This test verifies the expected path structure
             $expectedPath | Should -Not -BeNullOrEmpty
         }
@@ -140,7 +140,7 @@ Describe "Configuration Management" {
         It "New-WorkItem should handle configuration appropriately" {
             # Check if configuration exists
             $userProfile = if ($env:USERPROFILE) { $env:USERPROFILE } else { $env:HOME }
-            $testConfigPath = Join-Path $userProfile ".psazuredevops" "config.json"
+            $testConfigPath = Join-Path $userProfile ".adowrapper" "config.json"
             
             if (Test-Path $testConfigPath) {
                 # If config exists, the function should attempt to use it
@@ -158,7 +158,7 @@ Describe "Configuration Management" {
         It "New-WorkItemInterruption should handle configuration appropriately" {
             # Check if configuration exists
             $userProfile = if ($env:USERPROFILE) { $env:USERPROFILE } else { $env:HOME }
-            $testConfigPath = Join-Path $userProfile ".psazuredevops" "config.json"
+            $testConfigPath = Join-Path $userProfile ".adowrapper" "config.json"
             
             if (Test-Path $testConfigPath) {
                 # If config exists, the function should attempt to use it
@@ -253,14 +253,14 @@ Describe "Function Behavior" {
         It "wi alias should be properly configured" {
             $alias = Get-Alias -Name wi -ErrorAction SilentlyContinue
             $alias | Should -Not -BeNullOrEmpty
-            $alias.Source | Should -Be "PSAzureDevOps"
+            $alias.Source | Should -Be "ADOWrapper"
             $alias.Definition | Should -Be "New-WorkItem"
         }
         
         It "wi-i alias should be properly configured" {
             $alias = Get-Alias -Name wi-i -ErrorAction SilentlyContinue
             $alias | Should -Not -BeNullOrEmpty
-            $alias.Source | Should -Be "PSAzureDevOps"
+            $alias.Source | Should -Be "ADOWrapper"
             $alias.Definition | Should -Be "New-WorkItemInterruption"
         }
     }
@@ -312,5 +312,5 @@ Describe "Private Functions" {
 
 AfterAll {
     # Clean up
-    Remove-Module PSAzureDevOps -ErrorAction SilentlyContinue
+    Remove-Module ADOWrapper -ErrorAction SilentlyContinue
 }

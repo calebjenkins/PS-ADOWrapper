@@ -1,7 +1,7 @@
-# PSAzureDevOps
-[![Test PSAzureDevOps Module](https://github.com/calebjenkins/PSAzureDevOps/actions/workflows/test.yml/badge.svg)](https://github.com/calebjenkins/PSAzureDevOps/actions/workflows/test.yml)
+# ADOWrapper
+[![Test ADOWrapper Module](https://github.com/calebjenkins/ADOWrapper/actions/workflows/test.yml/badge.svg)](https://github.com/calebjenkins/ADOWrapper/actions/workflows/test.yml)
 
-A PowerShell module that simplifies working with Azure DevOps CLI by providing convenient wrapper functions and preset scenarios for common tasks.
+A PowerShell module that Wraps ADO Workitems and simplifies working with Azure DevOps CLI by providing convenient wrapper functions and pre-set scenarios for common tasks.
 
 ![ADO Wrapper](./docs/resources/ADO_Wrapper.png "ADO Wrapper")
 
@@ -36,8 +36,8 @@ For the best development experience with consistent tooling:
 1. **Prerequisites**: VS Code with Dev Containers extension and Docker Desktop
 2. **Clone and Open**:
    ```bash
-   git clone https://github.com/calebjenkins/PSAzureDevOps.git
-   cd PSAzureDevOps
+   git clone https://github.com/calebjenkins/ADOWrapper.git
+   cd ADOWrapper
    code .
    ```
 3. **Reopen in Container**: `Ctrl+Shift+P` → `Dev Containers: Reopen in Container`
@@ -51,22 +51,22 @@ The devcontainer includes:
 ### From Source
 1. Clone the repository:
    ```powershell
-   git clone https://github.com/calebjenkins/PSAzureDevOps.git
+   git clone https://github.com/calebjenkins/ADOWrapper.git
    ```
 
 2. Import the module:
    ```powershell
-   Import-Module ./PSAzureDevOps/PSAzureDevOps.psm1
+   Import-Module ./ADOWrapper/ADOWrapper.psm1
    ```
 
 ### Manual Installation
-Copy the `PSAzureDevOps` folder to one of your PowerShell module paths:
+Copy the `ADOWrapper` folder to one of your PowerShell module paths:
 ```powershell
 # View your module paths
 $env:PSModulePath -split [IO.Path]::PathSeparator
 
 # Copy to user module path (example)
-Copy-Item -Path ./PSAzureDevOps -Destination "$HOME/Documents/PowerShell/Modules/" -Recurse
+Copy-Item -Path ./ADOWrapper -Destination "$HOME/Documents/PowerShell/Modules/" -Recurse
 ```
 
 ## Usage
@@ -85,7 +85,7 @@ This will prompt you for:
 - **Personal Access Token (PAT)**: Your Azure DevOps PAT (stored securely)
 - **User Name/Email**: Your name or email for work item assignment (optional)
 
-Configuration is stored in `~/.psazuredevops/config.json` and credentials are encrypted.
+Configuration is stored in `~/.adowrapper/config.json` and credentials are encrypted.
 
 ### Creating Work Items
 
@@ -179,23 +179,23 @@ The module includes comprehensive Pester tests to ensure functionality and relia
 
 ```powershell
 # Navigate to the project root directory
-cd c:\path\to\PSAzureDevOps
+cd c:\path\to\ADOWrapper
 
 # Run all tests with default output
-Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1
+Invoke-Pester -Path .\ADOWrapper\Tests\ADOWrapper.Tests.ps1
 ```
 
 #### Advanced Test Options
 
 ```powershell
 # Run tests with detailed output
-Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1 -Output Detailed
+Invoke-Pester -Path .\ADOWrapper\Tests\ADOWrapper.Tests.ps1 -Output Detailed
 
 # Run tests and generate a test report
-Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1 -OutputFormat NUnitXml -OutputFile "TestResults.xml"
+Invoke-Pester -Path .\ADOWrapper\Tests\ADOWrapper.Tests.ps1 -OutputFormat NUnitXml -OutputFile "TestResults.xml"
 
 # Run specific test contexts (examples)
-Invoke-Pester -Path .\PSAzureDevOps\Tests\PSAzureDevOps.Tests.ps1 -Tag "ModuleLoading"
+Invoke-Pester -Path .\ADOWrapper\Tests\ADOWrapper.Tests.ps1 -Tag "ModuleLoading"
 ```
 
 #### Test Coverage and Validation
@@ -213,8 +213,8 @@ If tests fail, try these steps:
 
 1. **Clean Module Import**:
    ```powershell
-   Remove-Module PSAzureDevOps -ErrorAction SilentlyContinue
-   Import-Module .\PSAzureDevOps\PSAzureDevOps.psm1 -Force
+   Remove-Module ADOWrapper -ErrorAction SilentlyContinue
+   Import-Module .\ADOWrapper\ADOWrapper.psm1 -Force
    ```
 
 2. **Check PowerShell Execution Policy**:
@@ -226,7 +226,7 @@ If tests fail, try these steps:
 
 3. **Verify Module Path**:
    ```powershell
-   Test-Path .\PSAzureDevOps\PSAzureDevOps.psm1
+   Test-Path .\ADOWrapper\ADOWrapper.psm1
    ```
 
 ### Continuous Integration
@@ -235,8 +235,8 @@ These tests are designed to run in CI/CD pipelines and will automatically valida
 
 ## Configuration File Location
 
-- **Windows**: `%USERPROFILE%\.psazuredevops\config.json`
-- **Linux/macOS**: `~/.psazuredevops/config.json`
+- **Windows**: `%USERPROFILE%\.adowrapper\config.json`
+- **Linux/macOS**: `~/.adowrapper/config.json`
 
 ## Security Notes
 
