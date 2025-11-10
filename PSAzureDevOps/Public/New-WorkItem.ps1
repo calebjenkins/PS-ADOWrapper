@@ -1,12 +1,11 @@
 function New-WorkItem {
     <#
     .SYNOPSIS
-        Creates a new work item tagged as an interruption and assigned to you.
+        Creates a new work item assigned to you.
     
     .DESCRIPTION
-        This function creates a new work item in Azure DevOps, automatically assigned to you
-        and tagged with "Interruption". You only need to provide the title.
-    
+        This function creates a new work item in Azure DevOps, automatically assigned to you.
+        You only need to provide the title.
     .PARAMETER Title
         The title of the work item.
     
@@ -15,14 +14,17 @@ function New-WorkItem {
     
     .PARAMETER Description
         Optional description for the work item.
-    
+
+    .PARAMETER Tags
+        Tags to associate with the work item.
+
     .EXAMPLE
-        New-InterruptionWorkItem -Title "Fix production bug"
+        New-WorkItem -Title "Fix production bug"
         Creates a new interruption work item with the specified title.
     
     .EXAMPLE
-        wi-i "Urgent customer call"
-        Uses the alias to quickly create an interruption work item.
+        wi "Urgent customer call"
+        Uses the alias to quickly create a work item.
     
     .NOTES
         This function requires SetUpADO to be run first to configure Azure DevOps settings.
@@ -111,3 +113,4 @@ function New-WorkItem {
 
 # Create alias for quick access
 Set-Alias -Name wi -Value New-WorkItem
+
