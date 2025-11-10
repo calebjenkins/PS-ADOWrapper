@@ -3,7 +3,7 @@
 
 A PowerShell module that Wraps ADO Workitems and simplifies working with Azure DevOps CLI by providing convenient wrapper functions and pre-set scenarios for common tasks.
 
-![ADO Wrapper](./docs/resources/ADO_Wrapper.png "ADO Wrapper")
+![ADO Wrapper](./docs/resources/ADO_Wrapper_clear_bling.png "ADO Wrapper")
 
 ## Features
 
