@@ -13,10 +13,10 @@ A PowerShell module that Wraps ADO Workitems and simplifies working with Azure D
 - **Cross-platform**: Works on Windows, Linux, and macOS
 - **Secure storage**: PAT tokens are stored as secure strings
 
-<video width="640" height="360" controls autoplay>
+<!-- <video width="640" height="360" controls autoplay>
   <source src="./docs/resources/screen-wi-i.mp4" type="video/mp4">
   Your browser does not support the video tag.
-</video>
+</video> -->
 
 
 ## Prerequisites
