@@ -1,4 +1,5 @@
 # PSAzureDevOps
+[![Test PSAzureDevOps Module](https://github.com/calebjenkins/PSAzureDevOps/actions/workflows/test.yml/badge.svg)](https://github.com/calebjenkins/PSAzureDevOps/actions/workflows/test.yml)
 
 A PowerShell module that simplifies working with Azure DevOps CLI by providing convenient wrapper functions and preset scenarios for common tasks.
 
