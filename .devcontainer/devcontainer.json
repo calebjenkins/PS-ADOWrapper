@@ -1,0 +1,55 @@
+{
+  "name": "PSAzureDevOps Development",
+  "image": "mcr.microsoft.com/devcontainers/powershell:latest",
+  
+  // Features to add to the dev container
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "installBicep": true,
+      "version": "latest"
+    }
+  },
+
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.powershell",
+        "ms-vscode.azure-account",
+        "ms-azuretools.vscode-azuredevops",
+        "pspester.pester-test",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "powershell.powerShellDefaultVersion": "PowerShell (x64)",
+        "powershell.integratedConsole.showOnStartup": false,
+        "terminal.integrated.defaultProfile.linux": "pwsh",
+        "files.defaultLanguage": "powershell"
+      }
+    }
+  },
+
+  // Set container environment variables
+  "containerEnv": {
+    "POWERSHELL_DISTRIBUTION_CHANNEL": "PSDocker-Ubuntu-22.04"
+  },
+
+  // Post-create command to set up the development environment
+  "postCreateCommand": ".devcontainer/setup.sh",
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally
+  "forwardPorts": [],
+
+  // Use 'postStartCommand' to run commands after the container has started
+  "postStartCommand": "pwsh -c 'Write-Host \"PSAzureDevOps Development Container Ready!\" -ForegroundColor Green'",
+
+  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root
+  "remoteUser": "vscode",
+  
+  // Configure container mounts
+  "mounts": [
+    "source=${localEnv:HOME}/.azure,target=/home/vscode/.azure,type=bind,consistency=cached"
+  ]
+}

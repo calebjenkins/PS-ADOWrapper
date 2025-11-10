@@ -1,0 +1,115 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Pester Tests",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "Invoke-Pester -Path './PSAzureDevOps/Tests/' -Output Detailed"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Run Tests with Coverage",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "Invoke-Pester -Path './PSAzureDevOps/Tests/' -CodeCoverage './PSAzureDevOps/Public/*.ps1' -OutputFormat NUnitXml -OutputFile 'TestResults.xml'"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Analyze Code Quality",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "Invoke-ScriptAnalyzer -Path './PSAzureDevOps/' -Recurse -Severity Warning,Error"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Verify Dev Container Setup",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-File",
+                ".devcontainer/Verify-DevContainer.ps1"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Import PSAzureDevOps Module",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "Import-Module './PSAzureDevOps/PSAzureDevOps.psm1' -Force; Get-Module PSAzureDevOps | Format-List"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate Module Documentation",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "Import-Module platyPS -Force; Import-Module './PSAzureDevOps/PSAzureDevOps.psm1' -Force; New-MarkdownHelp -Module PSAzureDevOps -OutputFolder './docs' -Force"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

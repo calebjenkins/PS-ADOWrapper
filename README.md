@@ -21,6 +21,25 @@ A PowerShell module that simplifies working with Azure DevOps CLI by providing c
 
 ## Installation
 
+### Development Container (Recommended)
+
+For the best development experience with consistent tooling:
+
+1. **Prerequisites**: VS Code with Dev Containers extension and Docker Desktop
+2. **Clone and Open**:
+   ```bash
+   git clone https://github.com/calebjenkins/PSAzureDevOps.git
+   cd PSAzureDevOps
+   code .
+   ```
+3. **Reopen in Container**: `Ctrl+Shift+P` → `Dev Containers: Reopen in Container`
+
+The devcontainer includes:
+- PowerShell 7+ with latest Pester (5.x+)
+- Azure CLI with DevOps extension
+- PSScriptAnalyzer for code quality
+- Pre-configured VS Code extensions and settings
+
 ### From Source
 1. Clone the repository:
    ```powershell
