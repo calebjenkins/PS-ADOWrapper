@@ -3,6 +3,8 @@
 
 A PowerShell module that simplifies working with Azure DevOps CLI by providing convenient wrapper functions and preset scenarios for common tasks.
 
+![ADO Wrapper](./docs/resources/ADO_Wrapper.png "ADO Wrapper")
+
 ## Features
 
 - **SetUpADO**: One-time setup to store Azure DevOps credentials and configuration locally
@@ -10,6 +12,12 @@ A PowerShell module that simplifies working with Azure DevOps CLI by providing c
 - **wi-i (New-WorkItemInterruption)**: Quick command to create work items tagged as interruptions and auto-assigned to you
 - **Cross-platform**: Works on Windows, Linux, and macOS
 - **Secure storage**: PAT tokens are stored as secure strings
+
+<video width="640" height="360" controls autoplay>
+  <source src="./docs/resources/screen-wi-i.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 ## Prerequisites
 
