@@ -247,6 +247,9 @@ These tests are designed to run in CI/CD pipelines and will automatically valida
 - Never commit your PAT token to source control
 - Regularly rotate your PAT tokens according to your organization's security policy
 
+## Design Considerations
+While most PowerShell modules are designed to get published to a gallery for easier consumption, this one is not. This is intended to be modified, extended and adapter for your use case. Some people might want to default to Tasks, others to User Stories. There isn't a right or a wrong, just what makes sense for you. Therefore, we incourage not publishing to a gallery, but instead for people to clone the repo, and install and modify the powershell scripts to fit your needs. In the future, I will consider patterns and techniques to make the commandlets just as flexible, and publishable - but today is not that day. 
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
